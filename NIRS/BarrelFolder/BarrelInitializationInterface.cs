@@ -113,6 +113,8 @@ namespace NIRS.BarrelFolder
                 {
                     chart1.Series[0].Points.AddXY(x, y);
                     chart1.Series[1].Points.AddXY(x, -y);
+                    chart1.Series[0].Points.OrderBy(t => t.XValue);
+                    chart1.Series[1].Points.OrderBy(t => t.XValue);
                 }
                 else MessageBox.Show("неверно заданы точки");
             else MessageBox.Show("неверно заданы точки");
