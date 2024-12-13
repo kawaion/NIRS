@@ -13,7 +13,9 @@ namespace NIRS.Helper
             X = x;
             Y = y;
         }
-        public double X { get; }
+        public double X { get; private set; }
         public double Y { get; }
+
+        public void ChangeX(double x) => X = x;
     }
 }
