@@ -57,18 +57,24 @@
     <Compile Include="BarrelFolder\FinderPointsBetweenCurrent.cs" />
     <Compile Include="BarrelFolder\MoverBottomBoreToZero.cs" />
     <Compile Include="BarrelFolder\VBarrelParts.cs" />
-    <Compile Include="Cell\MixtureStateParametersCell.cs" />
+    <Compile Include="ConstParams\Koefs.cs" />
+    <Compile Include="ConstParams\Step.cs" />
+    <Compile Include="ConstParams\Viscosity.cs" />
+    <Compile Include="Grid\Cell\MixtureStateParametersCell.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Cell\DynamicCharacteristicsFlowCell.cs" />
-    <Compile Include="Cell\ParametersCell.cs" />
-    <Compile Include="Grid\SpaceTimeGrid.cs" />
+    <Compile Include="Grid\Cell\DynamicCharacteristicsFlowCell.cs" />
+    <Compile Include="Grid\Cell\ParametersCell.cs" />
+    <Compile Include="Grid\PseudoViscosityMechanism.cs" />
+    <Compile Include="Grid\TimeSpaceGrid.cs" />
     <Compile Include="Helper\EquationOfLineFromTwoPoints.cs" />
+    <Compile Include="Helper\MoreConvenientNotation.cs" />
     <Compile Include="Helper\Point2D.cs" />
+    <Compile Include="NablaFunctions\WaypointCalculator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BarrelFolder\BarrelInitializationInterface.resx">
