@@ -18,10 +18,11 @@ namespace NIRS.Cell
         public abstract double e { get; set; }
         public abstract double eps { get; set; }
         public abstract double psi { get; set; }
+        public abstract double z { get; set; }
         public abstract double a { get; set; }
         public abstract double m { get; set; }
         public abstract double p { get; set; }
         public abstract double ro { get; set; }
-        public abstract double delta_m { get; set; }
+        public abstract double delta { get; set; }
     }
 }

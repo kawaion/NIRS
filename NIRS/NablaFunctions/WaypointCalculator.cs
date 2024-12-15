@@ -16,17 +16,17 @@ namespace NIRS.NablaFunctions
         /// <summary>
         /// для удобной работы с наблой необходимо передать ссылку на сетку с данными.
         /// </summary>
-        public WaypointCalculator(TimeSpaceGrid grid, Barrel barrel)
+        public WaypointCalculator(TimeSpaceGrid grid, Cannon cannon)
         {
             _grid = grid;
-            _barrel = barrel;
+            _barrel = cannon;
         }
         public double nabla(string param1, string v,double n, double k)
         {
             if (IsHalfInt(n) && IsInt(k))
                 return (DynamicAverage(param1, v, n, k + 0.5) - DynamicAverage(param1, v, n, k - 0.5)) / Step.h;
             if (IsHalfInt(n) && IsHalfInt(k))
-                return (MixtureAverage(param1, v, n, k + 0.5) - MixtureAverage(param1, v, n, k - 0.5)) / Step.h;
+                return (OffsetAverage(param1, v, n, k + 0.5) - OffsetAverage(param1, v, n, k - 0.5)) / Step.h;
 
             throw new Exception($"неизвестные параметры {param1} и {v} на слое {n} {k}");
         }
@@ -38,7 +38,7 @@ namespace NIRS.NablaFunctions
             else
                 return sum_v / 2 * GetParamCell(mu, n, k + 0.5);
         }
-        private double MixtureAverage(string fi, string V, double n, double k)
+        private double OffsetAverage(string fi, string V, double n, double k)
         {
             double v = GetParamCell(V, n, k);
             if (v >= 0)
@@ -63,8 +63,8 @@ namespace NIRS.NablaFunctions
         {
             if(_grid[n, k] is DynamicCharacteristicsFlowCell dynamicCell)
                 return dynamicCell.GetValueByString(param);
-            if (_grid[n, k] is MixtureStateParametersCell mixtureCell)
-                return mixtureCell.GetValueByString(param);
+            if (_grid[n, k] is OffsetStateParametersCell OffsetCell)
+                return OffsetCell.GetValueByString(param);
             if (param.Last() == 'S')
                 return GetParamCell(param.Substring(0,param.Length-1),n,k) * _barrel.S(k * Step.h);
             if (param == "pStroke")

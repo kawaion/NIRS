@@ -52,6 +52,11 @@ namespace NIRS.Cell
             get { throw new Exception("это значение не содержится в этой клетке"); }
             set { throw new Exception("это значение не содержится в этой клетке"); }
         }
+        public override double z
+        {
+            get { throw new Exception("это значение не содержится в этой клетке"); }
+            set { throw new Exception("это значение не содержится в этой клетке"); }
+        }
         public override double a
         {
             get { throw new Exception("это значение не содержится в этой клетке"); }
@@ -78,7 +83,7 @@ namespace NIRS.Cell
             get { throw new Exception("это значение не содержится в этой клетке"); }
             set { throw new Exception("это значение не содержится в этой клетке"); }
         }
-        public override double delta_m
+        public override double delta
         {
             get { throw new Exception("это значение не содержится в этой клетке"); }
             set { throw new Exception("это значение не содержится в этой клетке"); }

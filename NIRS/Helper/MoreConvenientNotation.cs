@@ -1,4 +1,4 @@
-﻿using NIRS.BarrelFolder;
+﻿using NIRS.CannonFolder;
 using NIRS.ConstParams;
 using NIRS.Grid;
 using System;
@@ -8,25 +8,30 @@ namespace NIRS.Helper
     class MoreConvenientNotation
     {
         private readonly TimeSpaceGrid _grid;
-        private readonly Barrel _barrel;
+        private readonly Cannon _cannon;
 
-        public MoreConvenientNotation(TimeSpaceGrid grid, Barrel barrel )
+        public MoreConvenientNotation(TimeSpaceGrid grid, Cannon cannon )
         {
             _grid = grid;
-            _barrel = barrel;
+            _cannon = cannon;
         }
-        public double r(double n, double k) => _grid[n, k].ro * _grid[n, k].m * _barrel.S(k * Step.h);
-        public double dynamic_m(double n, double k) => _grid[n, k].ro * _grid[n, k].m * _barrel.S(k * Step.h) * _grid[n, k].v;
-        public double e(double n, double k) => _grid[n, k].ro * _grid[n, k].m * _barrel.S(k * Step.h) * _grid[n, k].eps;
-        public double delta(double n, double k) => _grid[n, k].delta_m * (1-_grid[n, k].m) * _barrel.S(k * Step.h);
-        public double M(double n, double k) => _grid[n, k].delta_m * (1 - _grid[n, k].m) * _barrel.S(k * Step.h) * _grid[n,k].w;
+        public double r(double n, double k) => _grid[n, k].ro * _grid[n, k].m * _cannon.Barrel.S(k * Step.h);
+        public double dynamic_m(double n, double k) => _grid[n, k].ro * _grid[n, k].m * _cannon.Barrel.S(k * Step.h) * _grid[n, k].v;
+        public double e(double n, double k) => _grid[n, k].ro * _grid[n, k].m * _cannon.Barrel.S(k * Step.h) * _grid[n, k].eps;
+        public double DELTA(double n, double k) => _grid[n, k].delta * (1-_grid[n, k].m) * _cannon.Barrel.S(k * Step.h);
+        public double M(double n, double k) => _grid[n, k].delta * (1 - _grid[n, k].m) * _cannon.Barrel.S(k * Step.h) * _grid[n,k].w;
 
 
-        public double H1(double n, double k) => -_barrel.S(k * Step.h) * tauW(n, k) + _barrel.S(k * Step.h) * G(n, k) * _grid[n - 0.5, k].w;
+        public double H1(double n, double k) => -_cannon.Barrel.S(k * Step.h) * tauW(n, k) + _cannon.Barrel.S(k * Step.h) * G(n, k) * _grid[n - 0.5, k].w;
         private double tauW(double n, double k)
         {
             double diff_v_w = _grid[n - 0.5, k].v - _grid[n - 0.5, k].w;
-            return Koefs.lamda0*(_grid[n,k-0.5].ro*diff_v_w * Math.Abs(diff_v_w))/2 * _grid[n, k - 0.5].a*//доделать после создания класса пороха
+            return Koefs.lamda0 * (_grid[n, k - 0.5].ro * diff_v_w * Math.Abs(diff_v_w)) / 2 
+                   * _grid[n, k - 0.5].a * (_cannon.Powder.S0 * _cannon.Powder.Sigma(_grid[n, k - 0.5].z, _grid[n, k - 0.5].psi)) / 4;
+        }
+        private double G(double n, double k)
+        {
+            return _grid[n, k - 0.5].a * _cannon.Powder.S0 * _cannon.Powder.Sigma(_grid[n, k - 0.5].z, _grid[n, k - 0.5].psi)*_grid[n,k].delta;
         }
 
     }

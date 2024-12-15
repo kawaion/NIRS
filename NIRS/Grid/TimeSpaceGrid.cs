@@ -13,7 +13,7 @@ namespace NIRS.Grid
         private readonly int _k;
 
         private List<List<DynamicCharacteristicsFlowCell>> dynamicsGrid;
-        private List<List<MixtureStateParametersCell>> mixtureStateGrid;
+        private List<List<OffsetStateParametersCell>> OffsetStateGrid;
 
         public TimeSpaceGrid(int n, int k)
         {
@@ -25,7 +25,7 @@ namespace NIRS.Grid
             get
             {
                 if (IsDynamicCell(n,k)) return dynamicsGrid[(int)(n - 0.5)][(int)k];
-                if (IsMixtureStateCell(n,k)) return mixtureStateGrid[(int)n][(int)(k - 0.5)];
+                if (IsOffsetStateCell(n,k)) return OffsetStateGrid[(int)n][(int)(k - 0.5)];
                 throw new Exception($"неизвестная ячейка {n} {k}");
             }
             set
@@ -39,10 +39,10 @@ namespace NIRS.Grid
                     else throw new Exception($"задается ячейка не динамических параметров {n} {k}"); 
 
 
-                if (IsMixtureStateCell(n, k)) 
-                    if (value is MixtureStateParametersCell MixtureStateCell)
+                if (IsOffsetStateCell(n, k)) 
+                    if (value is OffsetStateParametersCell OffsetStateCell)
                     {      
-                        mixtureStateGrid [(int)n] [(int)(k-0.5)] = MixtureStateCell;
+                        OffsetStateGrid [(int)n] [(int)(k-0.5)] = OffsetStateCell;
                         return;
                     }
                     else throw new Exception($"задается ячейка не состояния смеси {n} {k}");
@@ -52,6 +52,6 @@ namespace NIRS.Grid
 
         }
         private bool IsDynamicCell(double n, double k) => n - (int)n == 0.5 && k - (int)k == 0;
-        private bool IsMixtureStateCell(double n, double k) => n - (int)n == 0 && k - (int)k == 0.5;
+        private bool IsOffsetStateCell(double n, double k) => n - (int)n == 0 && k - (int)k == 0.5;
     }
 }
