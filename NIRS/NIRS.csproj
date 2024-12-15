@@ -47,20 +47,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BarrelFolder\Barrel.cs" />
-    <Compile Include="BarrelFolder\BarrelInitializationInterface.cs">
+    <Compile Include="CannonFolder\BarrelFolder\Barrel.cs" />
+    <Compile Include="CannonFolder\BarrelFolder\BarrelInitializationInterface.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BarrelFolder\BarrelInitializationInterface.Designer.cs">
+    <Compile Include="CannonFolder\BarrelFolder\BarrelInitializationInterface.Designer.cs">
       <DependentUpon>BarrelInitializationInterface.cs</DependentUpon>
     </Compile>
-    <Compile Include="BarrelFolder\FinderPointsBetweenCurrent.cs" />
-    <Compile Include="BarrelFolder\MoverBottomBoreToZero.cs" />
-    <Compile Include="BarrelFolder\VBarrelParts.cs" />
+    <Compile Include="CannonFolder\BarrelFolder\FinderPointsBetweenCurrent.cs" />
+    <Compile Include="CannonFolder\BarrelFolder\MoverBottomBoreToZero.cs" />
+    <Compile Include="CannonFolder\BarrelFolder\VBarrelParts.cs" />
+    <Compile Include="CannonFolder\Cannon.cs" />
+    <Compile Include="CannonFolder\PowderFolder\Powder.cs" />
+    <Compile Include="CannonFolder\PowderFolder\Powder_12_7.cs" />
+    <Compile Include="ConstParams\ConstPowder.cs" />
     <Compile Include="ConstParams\Koefs.cs" />
     <Compile Include="ConstParams\Step.cs" />
     <Compile Include="ConstParams\Viscosity.cs" />
-    <Compile Include="Grid\Cell\MixtureStateParametersCell.cs" />
+    <Compile Include="Grid\Cell\OffsetStateParametersCell.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,9 +79,11 @@
     <Compile Include="Helper\MoreConvenientNotation.cs" />
     <Compile Include="Helper\Point2D.cs" />
     <Compile Include="NablaFunctions\WaypointCalculator.cs" />
+    <Compile Include="NumericalMethod\SEL.cs" />
+    <Compile Include="NumericalMethod\FunctionsSEL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="BarrelFolder\BarrelInitializationInterface.resx">
+    <EmbeddedResource Include="CannonFolder\BarrelFolder\BarrelInitializationInterface.resx">
       <DependentUpon>BarrelInitializationInterface.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">

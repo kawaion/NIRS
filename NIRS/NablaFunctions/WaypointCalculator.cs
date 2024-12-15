@@ -1,17 +1,16 @@
-﻿using NIRS.BarrelFolder;
-using NIRS.ConstParams;
+﻿using NIRS.ConstParams;
 using NIRS.Grid;
 using NIRS.Cell;
 using System;
 using System.Linq;
-
+using NIRS.CannonFolder;
 
 namespace NIRS.NablaFunctions
 {
     class WaypointCalculator
     {
         private readonly TimeSpaceGrid _grid;
-        private readonly Barrel _barrel;
+        private readonly Cannon _cannon;
 
         /// <summary>
         /// для удобной работы с наблой необходимо передать ссылку на сетку с данными.
@@ -19,7 +18,7 @@ namespace NIRS.NablaFunctions
         public WaypointCalculator(TimeSpaceGrid grid, Cannon cannon)
         {
             _grid = grid;
-            _barrel = cannon;
+            _cannon = cannon;
         }
         public double nabla(string param1, string v,double n, double k)
         {
@@ -66,7 +65,7 @@ namespace NIRS.NablaFunctions
             if (_grid[n, k] is OffsetStateParametersCell OffsetCell)
                 return OffsetCell.GetValueByString(param);
             if (param.Last() == 'S')
-                return GetParamCell(param.Substring(0,param.Length-1),n,k) * _barrel.S(k * Step.h);
+                return GetParamCell(param.Substring(0,param.Length-1),n,k) * _cannon.Barrel.S(k * Step.h);
             if (param == "pStroke")
                 return GetParamCell("p", n, k) + GetParamCell("q", n - 0.5, k);
             if(param== "q")

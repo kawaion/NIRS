@@ -23,6 +23,14 @@ namespace NIRS.Helper
 
 
         public double H1(double n, double k) => -_cannon.Barrel.S(k * Step.h) * tauW(n, k) + _cannon.Barrel.S(k * Step.h) * G(n, k) * _grid[n - 0.5, k].w;
+        public double H2(double n, double k) => _cannon.Barrel.S(k * Step.h) * tauW(n, k) - _cannon.Barrel.S(k * Step.h) * G(n, k) * _grid[n - 0.5, k].w;
+        public double H3(double n, double k) => _cannon.Barrel.S(k * Step.h) * G(n-0.5, k+0.5);
+        public double H4(double n, double k) 
+        {
+            double diff_v_w = _grid[n, k + 0.5].v - _grid[n, k + 0.5].w;
+            return _cannon.Barrel.S(k * Step.h) * G(n - 0.5, k + 0.5)*(ConstPowder.Q+Math.Pow(diff_v_w,2)/2)+ _cannon.Barrel.S(k * Step.h)*tauW(n+0.5,k+0.5)*diff_v_w; 
+        }
+        public double H5(double n, double k) => _cannon.Powder.KappaP / _cannon.Powder.e1 * _cannon.Powder.Sigma(_grid[n - 0.5, k].z, _grid[n - 0.5, k].psi) * _cannon.Powder.Uk(_grid[n - 0.5, k].p);
         private double tauW(double n, double k)
         {
             double diff_v_w = _grid[n - 0.5, k].v - _grid[n - 0.5, k].w;
@@ -31,7 +39,7 @@ namespace NIRS.Helper
         }
         private double G(double n, double k)
         {
-            return _grid[n, k - 0.5].a * _cannon.Powder.S0 * _cannon.Powder.Sigma(_grid[n, k - 0.5].z, _grid[n, k - 0.5].psi)*_grid[n,k].delta;
+            return _grid[n, k - 0.5].a * _cannon.Powder.S0 * _cannon.Powder.Sigma(_grid[n, k - 0.5].z, _grid[n, k - 0.5].psi)*_grid[n,k].delta*_cannon.Powder.Uk(_grid[n,k-0.5].p);
         }
 
     }

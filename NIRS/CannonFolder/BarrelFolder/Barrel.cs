@@ -20,7 +20,9 @@ namespace NIRS.BarrelFolder
             (_points, _endChamber) = MoverBottomBoreToZero.Move(_points, _endChamber);
             _pointsBetween = new FinderPointsBetweenCurrent(_points);
             _VFromBottomBoreToPoint = _points.CalcVBarrelPairs();
+            Skn = S(_points[0].X);
         }
+        public double Skn;
         public double S(double x) => Math.Pow(R(x), 2) * Math.PI;
         public double V(double x)
         {
@@ -31,6 +33,7 @@ namespace NIRS.BarrelFolder
             return _VFromBottomBoreToPoint[p1] + VSegment;
         }
         public double V(double x1, double x2) => Math.Abs(V(x1) - V(x2));
+        public double D(double x) => 2 * R(x);
         private double R(double x)
         {
             (Point2D p1, Point2D p2) = _pointsBetween.Find(x);

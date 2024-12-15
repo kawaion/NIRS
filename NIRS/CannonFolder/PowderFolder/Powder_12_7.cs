@@ -9,10 +9,8 @@ namespace NIRS.CannonFolder.PowderFolder
 {
     class Powder_12_7 : Powder
     {
-        private double e1;
         public Powder_12_7(double D0, double d0, double L0) : base(D0,d0,L0)
         {
-            e1 = _d0;
             InitialiseParameters(_D0, _d0, _L0);
         }
         public override double Kappa { get; set; }
@@ -21,6 +19,7 @@ namespace NIRS.CannonFolder.PowderFolder
         public override double PsiS { get; set; }
         public override double S0 { get; set; }
         public override double LAMDA0 { get; set; }
+        public override double KappaP { get; set; }
 
         public override double Psi(double z)
         {
@@ -38,18 +37,19 @@ namespace NIRS.CannonFolder.PowderFolder
             throw new ArgumentException();
         }
 
-        protected override (double Kappa, double Lamda, double Mu) InitialiseKappaLadaMu(double P, double Q, double beta)
+        protected override (double Kappa, double Lamda, double Mu, double KappaP) InitialiseKappaLadaMu(double P, double Q, double beta)
         {
             double kappa = (Q + 2 * P) / Q * beta;
             double lamda = 2 * (3 - P) / (Q + 2 * P) * beta;
             double mu = 6 * Math.Pow(beta, 2) / (Q + 2 * P);
-            return (kappa, lamda, mu);
+            double kappaP = Kappa - 0.5 * Kappa * Mu;
+            return (kappa, lamda, mu, kappaP);
         }
 
         protected override void InitialiseParameters(double D0, double d0, double L0)
         {
             (P, Q, beta) = InitialisePQBeta(D0, d0, L0);
-            (Kappa,Lamda,Mu) = InitialiseKappaLadaMu(P, Q, beta);
+            (Kappa,Lamda,Mu,KappaP) = InitialiseKappaLadaMu(P, Q, beta);
             InitialisePsiS();
         }
         private void InitialisePsiS()
