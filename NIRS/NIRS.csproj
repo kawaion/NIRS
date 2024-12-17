@@ -77,6 +77,7 @@
     <Compile Include="Grid\TimeSpaceGrid.cs" />
     <Compile Include="Helper\EquationOfLineFromTwoPoints.cs" />
     <Compile Include="Helper\MoreConvenientNotation.cs" />
+    <Compile Include="Helper\OffsetNK.cs" />
     <Compile Include="Helper\Point2D.cs" />
     <Compile Include="NablaFunctions\WaypointCalculator.cs" />
     <Compile Include="NumericalMethod\SEL.cs" />

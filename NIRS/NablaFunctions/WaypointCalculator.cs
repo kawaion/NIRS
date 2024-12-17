@@ -20,7 +20,8 @@ namespace NIRS.NablaFunctions
             _grid = grid;
             _cannon = cannon;
         }
-        public double nabla(string param1, string v,double n, double k)
+        //если будет сложно разобраться то можно добавить смещение
+        public double Nabla(string param1, string v,double n, double k)
         {
             if (IsHalfInt(n) && IsInt(k))
                 return (DynamicAverage(param1, v, n, k + 0.5) - DynamicAverage(param1, v, n, k - 0.5)) / Step.h;
@@ -45,7 +46,7 @@ namespace NIRS.NablaFunctions
             else
                 return GetParamCell(fi, n - 0.5, k + 0.5) * v;
         }
-        public double nabla(string v, double n, double k)
+        public double Nabla(string v, double n, double k)
         {
             if (IsHalfInt(n) && IsHalfInt(k))
                 return (GetParamCell(v, n, k + 0.5) - GetParamCell(v, n, k - 0.5)) / Step.h;
@@ -70,7 +71,7 @@ namespace NIRS.NablaFunctions
                 return GetParamCell("p", n, k) + GetParamCell("q", n - 0.5, k);
             if(param== "q")
                 return _grid.q(this, n, k);
-            if (param == "1-m")
+            if (param == "(1-m)")
                 return 1-_grid[n, k].m;
             throw new Exception($"неизвестное значение {param}");
         }
