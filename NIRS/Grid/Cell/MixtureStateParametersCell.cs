@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace NIRS.Cell
 {
-    class OffsetStateParametersCell : ParametersCell
+    class MixtureStateParametersCell : ParametersCell
     {
-        public OffsetStateParametersCell()
+        public MixtureStateParametersCell()
         {
 
         }
-        public OffsetStateParametersCell(double r, double e, double eps, double psi, double z, double a, double m, double p, double ro, double delta_m)
+        public MixtureStateParametersCell(double r, double e, double eps, double psi, double z, double a, double m, double p, double ro, double delta_m)
         {
             this.r = r;
             this.e = e;

@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace NIRS.BarrelFolder
 {
-    static class VBarrelParts
+    static class WBarrelParts
     {
-        public static Dictionary<Point2D, double> CalcVBarrelPairs(this List<Point2D> points)
+        public static Dictionary<Point2D, double> CalcWBarrelPairs(this List<Point2D> points)
         {
             Dictionary<Point2D, double> VParts = new Dictionary<Point2D, double>();
             double V = 0;
             for(int i = 1; i < points.Count; i++)
             {
-                V += CalcVBarrelSegment(points[i - 1], points[i]);
+                V += CalcWBarrelSegment(points[i - 1], points[i]);
                 VParts.Add(points[i], V);
             }
             return VParts;
         }
-        public static double CalcVBarrelSegment(Point2D p1 ,Point2D p2)
+        public static double CalcWBarrelSegment(Point2D p1 ,Point2D p2)
         {
             double h = Math.Abs(p2.X - p1.X);
             double r1 = p1.Y;
