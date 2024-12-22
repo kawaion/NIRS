@@ -19,6 +19,7 @@ namespace NIRS.NablaFunctions
         {
             _grid = grid;
             _cannon = cannon;
+            sn = new WaypointCalculatorForShell(grid, cannon, this);
         }
         //если будет сложно разобраться то можно добавить смещение
         public double Nabla(string param1, string v,double n, double k)
@@ -75,6 +76,7 @@ namespace NIRS.NablaFunctions
                 return 1-_grid[n, k].m;
             throw new Exception($"неизвестное значение {param}");
         }
+        public WaypointCalculatorForShell sn { get; set; }
         private bool IsInt(double d) => ((d - (int)d) % 2 == 0);
         private bool IsHalfInt(double d) => ((d - (int)d) % 2 == 0.5);
     }

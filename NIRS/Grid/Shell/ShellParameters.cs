@@ -9,17 +9,19 @@ namespace NIRS.Grid.Shell
 {
     class ShellParameters
     {
-        private List<DynamicCharacteristicsFlowCell> ShellDynamicToTime;
-        private List<MixtureStateParametersCell> ShellMixtureToTime;
-        private List<double> x;
+        List<ShellParametersCell> shellParametersCells;
         public ShellParametersCell this[double n]
         {
             get
             {
-                ShellParameters
+                return shellParametersCells[(int)(n * 2)];
+            }
+            set
+            {
+                while (shellParametersCells.Count < (int)(n * 2))
+                    shellParametersCells.Add(null);
+                shellParametersCells[(int)(n * 2)] = value;
             }
         }
-
-        public double X(double n)
     }
 }

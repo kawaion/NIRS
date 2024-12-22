@@ -19,6 +19,10 @@ namespace NIRS.Cell
             this.v = v;
             this.w = w;
         }
+        public static ParametersCell GetZeroCell()
+        {
+            return new DynamicCharacteristicsFlowCell(0, 0, 0, 0);
+        }
 
         public override double GetValueByString(string param)
         {
@@ -79,11 +83,6 @@ namespace NIRS.Cell
         }
 
         public override double eps
-        {
-            get { throw new Exception("это значение не содержится в этой клетке"); }
-            set { throw new Exception("это значение не содержится в этой клетке"); }
-        }
-        public override double delta
         {
             get { throw new Exception("это значение не содержится в этой клетке"); }
             set { throw new Exception("это значение не содержится в этой клетке"); }

@@ -12,7 +12,7 @@ namespace NIRS.Cell
         {
 
         }
-        public MixtureStateParametersCell(double r, double e, double eps, double psi, double z, double a, double m, double p, double ro, double delta_m)
+        public MixtureStateParametersCell(double r, double e, double eps, double psi, double z, double a, double m, double p, double ro)
         {
             this.r = r;
             this.e = e;
@@ -23,7 +23,10 @@ namespace NIRS.Cell
             this.m = m;
             this.p = p;
             this.ro = ro;
-            this.delta = delta_m;
+        }
+        public static ParametersCell GetZeroCell()
+        {
+            return new MixtureStateParametersCell(0,0,0,0,0,0,0,0,0);
         }
         public override double GetValueByString(string param)
         {
@@ -38,7 +41,6 @@ namespace NIRS.Cell
                 case "m": return m;
                 case "p": return p;
                 case "ro": return ro;
-                case "delta_m": return delta;
                 default: throw new Exception($"неизвестное значение {param}");
             }
         }
@@ -51,11 +53,6 @@ namespace NIRS.Cell
         public override double m { get; set; }
         public override double p { get; set; }
         public override double ro { get; set; }
-        public override double delta { get; set; }
-
-
-
-
         public override double M
         {
             get { throw new Exception("это значение не содержится в этой клетке"); }

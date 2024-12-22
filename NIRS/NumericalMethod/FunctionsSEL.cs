@@ -53,7 +53,8 @@ namespace NIRS.NumericalMethod
         public double Calc_w(double n, double k)
         {
             (n, k) = OffsetNK.Appoint(n, k).Offset(n + 0.5, k);
-            return 2 * _grid[n + 0.5, k].M / (_grid[n, k - 0.5].delta + _grid[n, k + 0.5].delta);
+            return 2 * _grid[n + 0.5, k].M 
+                       / (ConstPowder.delta * (1-_grid[n,k-0.5].m*_cannon.Barrel.S((k - 0.5)*Step.h) - (1 - _grid[n, k - 0.5].m * _cannon.Barrel.S((k - 0.5) * Step.h))));
         }
         public double Calc_r(double n, double k)
         {

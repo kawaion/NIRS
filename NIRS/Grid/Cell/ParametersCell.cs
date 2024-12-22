@@ -23,6 +23,5 @@ namespace NIRS.Cell
         public abstract double m { get; set; }
         public abstract double p { get; set; }
         public abstract double ro { get; set; }
-        public abstract double delta { get; set; }
     }
 }

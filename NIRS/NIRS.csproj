@@ -56,15 +56,16 @@
     </Compile>
     <Compile Include="CannonFolder\BarrelFolder\FinderPointsBetweenCurrent.cs" />
     <Compile Include="CannonFolder\BarrelFolder\MoverBottomBoreToZero.cs" />
-    <Compile Include="CannonFolder\BarrelFolder\VBarrelParts.cs" />
+    <Compile Include="CannonFolder\BarrelFolder\WBarrelParts.cs" />
     <Compile Include="CannonFolder\Cannon.cs" />
     <Compile Include="CannonFolder\PowderFolder\Powder.cs" />
     <Compile Include="CannonFolder\PowderFolder\Powder_12_7.cs" />
     <Compile Include="ConstParams\ConstPowder.cs" />
     <Compile Include="ConstParams\Koefs.cs" />
+    <Compile Include="ConstParams\Shell.cs" />
     <Compile Include="ConstParams\Step.cs" />
     <Compile Include="ConstParams\Viscosity.cs" />
-    <Compile Include="Grid\Cell\OffsetStateParametersCell.cs" />
+    <Compile Include="Grid\Cell\MixtureStateParametersCell.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,13 +74,20 @@
     </Compile>
     <Compile Include="Grid\Cell\DynamicCharacteristicsFlowCell.cs" />
     <Compile Include="Grid\Cell\ParametersCell.cs" />
+    <Compile Include="Grid\LImitValues.cs" />
+    <Compile Include="Grid\MemoryAllocator.cs" />
     <Compile Include="Grid\PseudoViscosityMechanism.cs" />
+    <Compile Include="Grid\Shell\ShellParameters.cs" />
+    <Compile Include="Grid\Shell\ShellParametersCell.cs" />
     <Compile Include="Grid\TimeSpaceGrid.cs" />
     <Compile Include="Helper\EquationOfLineFromTwoPoints.cs" />
     <Compile Include="Helper\MoreConvenientNotation.cs" />
     <Compile Include="Helper\OffsetNK.cs" />
     <Compile Include="Helper\Point2D.cs" />
+    <Compile Include="NablaFunctions\INabla.cs" />
     <Compile Include="NablaFunctions\WaypointCalculator.cs" />
+    <Compile Include="NablaFunctions\WaypointCalculatorForShell.cs" />
+    <Compile Include="NumericalMethod\FunctionsShell.cs" />
     <Compile Include="NumericalMethod\SEL.cs" />
     <Compile Include="NumericalMethod\FunctionsSEL.cs" />
     <Compile Include="Program.cs" />
