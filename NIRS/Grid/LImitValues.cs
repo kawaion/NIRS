@@ -1,6 +1,6 @@
 ﻿using NIRS.CannonFolder;
-using NIRS.Cell;
 using NIRS.ConstParams;
+using NIRS.Grid.Cell;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,14 +36,14 @@ namespace NIRS.Grid
                 double r = ro * m * _cannon.Barrel.S((k - 0.5) * Step.h);
                 double e = ro * m * _cannon.Barrel.S((k - 0.5) * Step.h) * eps;
                 MixtureStateParametersCell cell = new MixtureStateParametersCell(r, e, eps, psi, z, a, m, p, ro);
-                _grid[0, k - 0.5] = cell;
+                _grid[0][k - 0.5] = cell;
             }
         }
         public void InitializeLimitSpace(double n, double x)
         {
             int Kstroke = (int)(x / Step.h);
-            _grid[n, 0] = DynamicCharacteristicsFlowCell.GetZeroCell();
-            _grid[n, Kstroke] = DynamicCharacteristicsFlowCell.GetZeroCell();
+            _grid[n][0] = DynamicCharacteristicsFlowCell.GetZeroCell();
+            _grid[n][Kstroke] = DynamicCharacteristicsFlowCell.GetZeroCell();
         }
     }
 }

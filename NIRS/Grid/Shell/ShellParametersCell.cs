@@ -1,4 +1,4 @@
-﻿using NIRS.Cell;
+﻿using NIRS.Grid.Cell;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +9,197 @@ namespace NIRS.Grid.Shell
 {
     class ShellParametersCell : ParametersCell
     {
-        public override double dynamic_m { get; set; }
-        public override double M { get; set; }
-        public override double m { get; set; }
-        public override double v { get; set; }
-        public override double w { get; set; }
-        public override double r { get; set; }
-        public override double e { get; set; }
-        public override double eps { get; set; }
-        public override double psi { get; set; }
-        public override double z { get; set; }
-        public override double a { get; set; }
-        public override double p { get; set; }
-        public override double ro { get; set; }
+        private GridType gridType;
+        public ShellParametersCell(GridType gridType)
+        {
+
+        }
+        private double dynamic_mValue;
+        private double MValue;
+        private double mValue;
+        private double vValue;
+        private double wValue;
+        private double rValue;
+        private double eValue;
+        private double epsValue;
+        private double psiValue;
+        private double zValue;
+        private double aValue;
+        private double pValue;
+        private double roValue;
+
+        public double xValue;
+
+
+        public override double dynamic_m 
+        { 
+            get 
+            {
+                if (gridType == GridType.dynamic) return dynamic_mValue;
+                else throw new Exception("обращение к не динамическому параметру");
+            }
+            set
+            {
+                if (gridType == GridType.dynamic) dynamic_mValue=value;
+                else throw new Exception("обращение к не динамическому параметру");
+            }
+        }
+        public override double M
+        {
+            get
+            {
+                if (gridType == GridType.dynamic) return MValue;
+                else throw new Exception("обращение к не динамическому параметру");
+            }
+            set
+            {
+                if (gridType == GridType.dynamic) MValue = value;
+                else throw new Exception("обращение к не динамическому параметру");
+            }
+        }
+        public override double m
+        {
+            get
+            {
+                if (gridType == GridType.dynamic) return mValue;
+                else throw new Exception("обращение к не динамическому параметру");
+            }
+            set
+            {
+                if (gridType == GridType.dynamic) mValue = value;
+                else throw new Exception("обращение к не динамическому параметру");
+            }
+        }
+        public override double v
+        {
+            get
+            {
+                if (gridType == GridType.dynamic) return vValue;
+                else throw new Exception("обращение к не динамическому параметру");
+            }
+            set
+            {
+                if (gridType == GridType.dynamic) vValue = value;
+                else throw new Exception("обращение к не динамическому параметру");
+            }
+        }
+        public override double w
+        {
+            get
+            {
+                if (gridType == GridType.dynamic) return wValue;
+                else throw new Exception("обращение к не динамическому параметру");
+            }
+            set
+            {
+                if (gridType == GridType.dynamic) wValue = value;
+                else throw new Exception("обращение к не динамическому параметру");
+            }
+        }
+        public override double r
+        {
+            get
+            {
+                if (gridType == GridType.mixtureState) return rValue;
+                else throw new Exception("обращение к не параметру состояния смеси");
+            }
+            set
+            {
+                if (gridType == GridType.mixtureState) rValue = value;
+                else throw new Exception("обращение к не параметру состояния смеси");
+            }
+        }
+        public override double e         
+        {
+            get
+            {
+                if (gridType == GridType.mixtureState) return eValue;
+                else throw new Exception("обращение к не параметру состояния смеси");
+            }
+            set
+            {
+                if (gridType == GridType.mixtureState) eValue = value;
+                else throw new Exception("обращение к не параметру состояния смеси");
+            }
+        }
+        public override double eps
+        {
+            get
+            {
+                if (gridType == GridType.mixtureState) return epsValue;
+                else throw new Exception("обращение к не параметру состояния смеси");
+            }
+            set
+            {
+                if (gridType == GridType.mixtureState) epsValue = value;
+                else throw new Exception("обращение к не параметру состояния смеси");
+            }
+        }
+        public override double psi
+        {
+            get
+            {
+                if (gridType == GridType.mixtureState) return psiValue;
+                else throw new Exception("обращение к не параметру состояния смеси");
+            }
+            set
+            {
+                if (gridType == GridType.mixtureState) psiValue = value;
+                else throw new Exception("обращение к не параметру состояния смеси");
+            }
+        }
+        public override double z
+        {
+            get
+            {
+                if (gridType == GridType.mixtureState) return zValue;
+                else throw new Exception("обращение к не параметру состояния смеси");
+            }
+            set
+            {
+                if (gridType == GridType.mixtureState) zValue = value;
+                else throw new Exception("обращение к не параметру состояния смеси");
+            }
+        }
+        public override double a
+        {
+            get
+            {
+                if (gridType == GridType.mixtureState) return aValue;
+                else throw new Exception("обращение к не параметру состояния смеси");
+            }
+            set
+            {
+                if (gridType == GridType.mixtureState) aValue = value;
+                else throw new Exception("обращение к не параметру состояния смеси");
+            }
+        }
+        public override double p
+        {
+            get
+            {
+                if (gridType == GridType.mixtureState) return pValue;
+                else throw new Exception("обращение к не параметру состояния смеси");
+            }
+            set
+            {
+                if (gridType == GridType.mixtureState) pValue = value;
+                else throw new Exception("обращение к не параметру состояния смеси");
+            }
+        }
+        public override double ro
+        {
+            get
+            {
+                if (gridType == GridType.mixtureState) return roValue;
+                else throw new Exception("обращение к не параметру состояния смеси");
+            }
+            set
+            {
+                if (gridType == GridType.mixtureState) roValue = value;
+                else throw new Exception("обращение к не параметру состояния смеси");
+            }
+        }
 
         public double x { get; set; }
 

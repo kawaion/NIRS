@@ -1,9 +1,9 @@
 ﻿using NIRS.ConstParams;
 using NIRS.Grid;
-using NIRS.Cell;
 using System;
 using System.Linq;
 using NIRS.CannonFolder;
+using NIRS.Grid.Cell;
 
 namespace NIRS.NablaFunctions
 {
@@ -62,9 +62,9 @@ namespace NIRS.NablaFunctions
         }
         private double GetParamCell(string param,double n, double k)
         {
-            if(_grid[n, k] is DynamicCharacteristicsFlowCell dynamicCell)
+            if(_grid[n][k] is DynamicCharacteristicsFlowCell dynamicCell)
                 return dynamicCell.GetValueByString(param);
-            if (_grid[n, k] is MixtureStateParametersCell MixtureCell)
+            if (_grid[n][k] is MixtureStateParametersCell MixtureCell)
                 return MixtureCell.GetValueByString(param);
             if (param.Last() == 'S')
                 return GetParamCell(param.Substring(0,param.Length-1),n,k) * _cannon.Barrel.S(k * Step.h);
@@ -73,7 +73,7 @@ namespace NIRS.NablaFunctions
             if(param== "q")
                 return _grid.q(this, n, k);
             if (param == "(1-m)")
-                return 1-_grid[n, k].m;
+                return 1-_grid[n][k].m;
             throw new Exception($"неизвестное значение {param}");
         }
         public WaypointCalculatorForShell sn { get; set; }

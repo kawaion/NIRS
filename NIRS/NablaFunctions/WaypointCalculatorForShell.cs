@@ -45,11 +45,11 @@ namespace NIRS.NablaFunctions
         private double GetParamCell(string param, double n)
         {
             if (param == "(1-m)")
-                return 1 - _grid.sn[n].m;
+                return 1 - _grid[n].sn.m;
             if (param.Last() == 'S')
-                return GetParamCell(param.Substring(0, param.Length - 1), n) * _cannon.Barrel.S(_grid.sn[n].x);
+                return GetParamCell(param.Substring(0, param.Length - 1), n) * _cannon.Barrel.S(_grid[n].sn.x);
 
-            return _grid.sn[n].GetValueByString(param);
+            return _grid[n].sn.GetValueByString(param);
 
             throw new Exception($"неизвестное значение {param}");
         }

@@ -74,11 +74,12 @@
     </Compile>
     <Compile Include="Grid\Cell\DynamicCharacteristicsFlowCell.cs" />
     <Compile Include="Grid\Cell\ParametersCell.cs" />
+    <Compile Include="Grid\SetterGridType.cs" />
     <Compile Include="Grid\LImitValues.cs" />
     <Compile Include="Grid\MemoryAllocator.cs" />
     <Compile Include="Grid\PseudoViscosityMechanism.cs" />
-    <Compile Include="Grid\Shell\ShellParameters.cs" />
     <Compile Include="Grid\Shell\ShellParametersCell.cs" />
+    <Compile Include="Grid\SpaceGrid.cs" />
     <Compile Include="Grid\TimeSpaceGrid.cs" />
     <Compile Include="Helper\EquationOfLineFromTwoPoints.cs" />
     <Compile Include="Helper\MoreConvenientNotation.cs" />
